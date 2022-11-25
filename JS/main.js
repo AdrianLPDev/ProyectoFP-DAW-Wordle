@@ -20,8 +20,8 @@ const cajaTeclado = document.getElementById("teclado");
     ['', '', '', '', '']
 ]
 
-let numIntento = 0;
-let columnaActualIntento = 0;
+var numIntento = 0;
+var columnaIntento = 0;
 
 /**
  * Coger o crear las variables necesarias
@@ -109,7 +109,7 @@ arrayIntentos.forEach((filaIntentos, filaIntentosNumero) => {
     divFila.classList.add('filaIntento');
     filaIntentos.forEach((_intento, numeroIntento) => {
         const divIntento = document.createElement('div');
-        divIntento.setAttribute('id', 'filaIntento-' + filaIntentosNumero + '-letra-' + (numeroIntento+1));
+        divIntento.setAttribute('id', 'filaIntento-' + filaIntentosNumero + '-columnaIntentos-' + (numeroIntento+1));
         divIntento.classList.add('cajaIntento');
         divFila.append(divIntento);
     })
@@ -145,54 +145,51 @@ for (let contadorLetra = 0; contadorLetra < letras.length; contadorLetra++) {
  * 
  */
 function recogerClick(letra) {
-    if(!juegoAcabado){
+    //if(!juegoAcabado){
         /**
          * Otra forma de hacerlo: letras.slice(-1) pero devolviendo un objeto aunque siendo mucho más rápido
          * Comprobamos si ha pulsado backspace '«' para borrar una letra escrita
         */
-        if(letra == letras(letras.length - 1)){
+        if(letra == "«"){
             borrarLetra();
+            //Paramos aquí
             return;
         }
         /*Aquí comprobaremos si ha clickeado en ENTER que será cuando quiera comprobar la palabra*/
         if (letra == "ENTER"){
             /*Utilizaremos una funcion comprobarPalabra para comprobar que la palabra escrita es correta, existe y luego si coincide */
             comprobarPalabra();
+            //Paramos aquí
             return;
         }
         addLetra(letra);
 
-    }
+    //}
 }
 /**
  * addLetra()
  */
 function addLetra(letra){/*Me da cosa poner eñes por lo que lo pongo en spanglish*/
-    if (columnaActualIntento < 5 && numIntento < 6) {
-
-        /*
-        const tile = document.getElementById('filaIntentos-' + numIntento + '-tile-' + currentTile)
-        tile.textContent = letter
-        arrayIntentos[numIntento][currentTile] = letter
-        tile.setAttribute('data', letter)
-        currentTile++
-        */
+    if (columnaIntento < 5 && numIntento < 6) {
+        let letraIntento = document.getElementById('filaIntento-' + numIntento + '-columnaIntentos-' + (columnaIntento+1));
+        letraIntento.textContent = letra;
+        arrayIntentos[numIntento][columnaIntento] = letra;
+        letraIntento.setAttribute('datos', letra);
+        columnaIntento++;
     }
 }
 function borrarLetra(){
-    if(columnaActualIntento < 5){
-        columnaActualIntento--;
-
+    let letraIntento = document.getElementById('filaIntento-' + numIntento + '-columnaIntentos-' + (columnaIntento));
+    //Vaciamos el contenido del div
+    letraIntento.textContent = '';
+    //Vaciamos el contenido del array que contiene las letras y palabras
+    arrayIntentos[numIntento][columnaIntento] = '';
+    //Vaciamos el atributo de datos
+    letraIntento.setAttribute('datos', '');
+    if(columnaIntento > 0){
+        //Restamos una columna para situarnos donde debemos
+        columnaIntento--;
     }
-    /*
-    if (currentTile > 0) {
-        currentTile--
-        const tile = document.getElementById('filaIntentos-' + currentRow + '-tile-' + currentTile)
-        tile.textContent = ''
-        arrayIntentos[currentRow][currentTile] = ''
-        tile.setAttribute('data', '')
-    }
-    */
 }
 /**
  * Comprobamos si la palabra es correcta
@@ -200,10 +197,30 @@ function borrarLetra(){
  * @returns cambia la ventana a estadísticas
  */
 function comprobarPalabra(){
-    if(arrayIntentos[filaIntentos] == palabraAleatoria){
-        juegoAcabado = true;
-
-        location.href = "HTML/stats.html";
+    let palabraIntento = arrayIntentos[numIntento].join('');
+    if(columnaIntento === 5){
+        /*
+        * Juntamos con .join todas las letras de la fila escrita con palabras y 
+        * la comparamos con la palabra aleatoria pasa a mayusculas ya que las letras 
+        * escritas estarán en mayúsculas
+        */
+        if(palabraIntento == palabraAleatoria.toUpperCase()){
+            juegoAcabado = true;
+            console.log("Has ganado!");
+            location.href = "HTML/stats.html";
+        }else{
+            if(numIntento >= 5){
+                juegoAcabado = false;
+                alert('Game Over');
+                return;
+            }
+            if(numIntento < 5){
+                numIntento++;
+                columnaIntento = 0;
+            }
+            
+        }
     }
+   
 }
 
