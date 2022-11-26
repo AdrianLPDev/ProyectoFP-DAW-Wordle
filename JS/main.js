@@ -19,38 +19,66 @@ const cajaTeclado = document.getElementById("teclado");
     ['', '', '', '', ''],
     ['', '', '', '', '']
 ]
-
-var numIntento = 0;
-var columnaIntento = 0;
-
 /**
  * Coger o crear las variables necesarias
  */
+//NumIntento será el intento de palabra y a la vez la fila actual
+var numIntento = 0;
+var columnaIntento = 0;
 
-/*Número de palabra aleatoria*/
-function numeroRandom() {
-    /*Mínimo el número será 0 */
+//Número de palabra aleatoria
+function numeroRandom(length) {
+    //Mínimo el número será 0
     let min = 0;
-    /*Hasta 1250 porque hay 1251 palabras pero empiezan en 0 al haberlas guardado en un objeto, entonces el primer index es 0*/
-    let max = 1250;
+    //Hasta el número que sea que se pase por parámetro
+    let max = length;
     return Math.round(Math.random() * (max - min)) + min;
 }
 /* Hay muchas formas de obtener la palabra aleatoria, desde la API de https://dle.rae.es/data/random, otras APIs, archivos txt, json, etc..*/
 /*Creamos la variable 'palabraAleatoria' para que se le asigne el valor de una palabra aleatoria*/
 var palabraAleatoria = '';
+
+/* Expresión regular para borrar lineas duplicadas de un archivo ^(.*)(\n\1)+$ --> https://www.w3schools.io/editor/vscode-duplicate-line/ */
+fetch("./TXT/05.txt")
+   .then(response => response.text())
+   .then((response) => {
+    let lineas = response.split("\n");
+    palabraAleatoria = lineas[numeroRandom(lineas.length)];
+    //Saber la palabra
+    console.log(palabraAleatoria);
+    return palabraAleatoria;
+   })
+   .catch(err => console.log(err))
+/*LECTURA DE ARCHIVO .JSON - Opción 2*/ 
 /*Lector de archivo json con las palabras de 5 letras (1251 palabras)*/
+/*
+//Número de palabra aleatoria
+function numeroRandomJson() {
+    //Mínimo el número será 0
+    let min = 0;
+    //Hasta 1250 porque hay 1251 palabras pero empiezan en 0 al haberlas guardado en un objeto, entonces el primer index es 0
+    let max = 1250;
+    return Math.round(Math.random() * (max - min)) + min;
+}
+*/
+/*
 fetch('./JSON/palabras.json')
   .then(response => response.json())
   .then(data => {
     let json = Object.values(data);
-    palabraAleatoria = json[numeroRandom()];
-    /*Saber la palabra*/
+    palabraAleatoria = json[numeroRandomJson()];
+    //Saber la palabra
     console.log(palabraAleatoria);
   })
+  fetch('https://palabras-aleatorias-public-api.herokuapp.com/random')
+  .then(response => response.json())
+  .then(data => console.log(data));
+*/
 
-  
-/* API DRAE para comprobar si la palabra existe: http://dle.rae.es/srv/search?w={word};*/
-
+/* 
+* API DRAE para comprobar si la palabra existe: http://dle.rae.es/srv/search?w={word};
+* Repositorio github para la utilización de las palabras de la RAE https://github.com/JorgeDuenasLerin/diccionario-espanol-txt
+*/
 
 /**
  * Creamos la variable de juego acabado para saber si ha ganado o ha realizado todos los intentos de tipo boolean 
@@ -173,6 +201,7 @@ function addLetra(letra){/*Me da cosa poner eñes por lo que lo pongo en spangli
     if (columnaIntento < 5 && numIntento < 6) {
         let letraIntento = document.getElementById('filaIntento-' + numIntento + '-columnaIntentos-' + (columnaIntento+1));
         letraIntento.textContent = letra;
+        letraIntento.innerHTML = letra;
         arrayIntentos[numIntento][columnaIntento] = letra;
         letraIntento.setAttribute('datos', letra);
         columnaIntento++;
@@ -196,31 +225,97 @@ function borrarLetra(){
  * @param void
  * @returns cambia la ventana a estadísticas
  */
-function comprobarPalabra(){
-    let palabraIntento = arrayIntentos[numIntento].join('');
-    if(columnaIntento === 5){
-        /*
-        * Juntamos con .join todas las letras de la fila escrita con palabras y 
-        * la comparamos con la palabra aleatoria pasa a mayusculas ya que las letras 
-        * escritas estarán en mayúsculas
-        */
-        if(palabraIntento == palabraAleatoria.toUpperCase()){
-            juegoAcabado = true;
-            console.log("Has ganado!");
-            location.href = "HTML/stats.html";
-        }else{
-            if(numIntento >= 5){
-                juegoAcabado = false;
-                alert('Game Over');
-                return;
+function comprobarPalabra () {
+    var contadorPalabraDetectada = 0;
+    let palabraIntento = arrayIntentos[numIntento].join('').toLocaleLowerCase();
+    if(columnaIntento > 4){
+        fetch("./TXT/05.txt")
+        .then(response => response.text())
+        .then((response) => {
+            let lineas = response.split("\n");
+            lineas.forEach(palabra => {
+                if(palabra == palabraIntento){
+                    contadorPalabraDetectada++;
+                    efectos();
+                    /*
+                    * Juntamos con .join todas las letras de la fila escrita con palabras y 
+                    * la comparamos con la palabra aleatoria pasa a mayusculas ya que las letras 
+                    * escritas estarán en mayúsculas
+                    */
+                    if (palabraAleatoria == palabraIntento) {
+                        juegoAcabado = true;
+                        console.log("Has ganado!");
+                        return
+                    } else {
+                        if(numIntento >= 5){
+                            juegoAcabado = false;
+                            alert('Game Over');
+                            return
+                        }
+                        if(numIntento < 5){
+                            console.log("Palabra intento: "+palabraIntento);
+                            console.log("Palabra del bucle: "+palabraIntento);
+                            //Sumamos uno a la posición de la fila por lo que bajaremos de fila para escribir
+                            numIntento++;
+                            //Reseteamos la posición de la columna
+                            columnaIntento = 0;
+                        }
+                    }
+                }
+            });
+            if (contadorPalabraDetectada == 0){
+                console.log(contadorPalabraDetectada);
+                alert('La palabra no existe');
+                return
             }
-            if(numIntento < 5){
-                numIntento++;
-                columnaIntento = 0;
-            }
-            
-        }
+        })
+        .catch(err => console.log(err))
     }
    
+}
+
+//Métodos para los colores y efectos
+
+function addColorATecla(letra, color) {
+    const tecla = document.getElementById(letra);
+    tecla.classList.add(color);
+}
+
+function efectos() {
+    //Cogemos el nodo de la fila entera
+    const filaIntento = document.querySelector('#filaIntento-' + numIntento).childNodes;
+    //La palabra la ponermos en mayúsculas para cuando la comparemos
+    let compruebaPalabra = palabraAleatoria.toUpperCase();
+    //Creamos un array donde guardaremos la palabra entera para ir comprobando letra por letra si coincide
+    const palabraIntento = [];
+
+    //Pintamos de negro por defecto
+    filaIntento.forEach(cuadro => {
+        palabraIntento.push({ letra: cuadro.getAttribute('datos'), color: 'caja-gris-oscuro' });
+    });
+
+    //Pintamos de naranja si existe la letra en algún lugar de la palabra aleatoria
+    palabraIntento.forEach(palabraIntento => {
+        if (compruebaPalabra.includes(palabraIntento.letra)) {
+            palabraIntento.color = 'caja-naranja';
+            compruebaPalabra = compruebaPalabra.replace(palabraIntento.letra, '');
+        }
+    });
+
+    //Pintamos de verde si la posicion de la letra coincide con el de la palabra aleatoria
+    palabraIntento.forEach((palabraIntento, index) => {
+        if (palabraIntento.letra == palabraAleatoria[index].toUpperCase()) {
+            palabraIntento.color = 'caja-verde';
+            compruebaPalabra = compruebaPalabra.replace(palabraIntento.letra, '');
+        }
+    });
+
+    filaIntento.forEach((cuadro, index) => {
+        setTimeout(() => {
+            cuadro.classList.add('girar');
+            cuadro.classList.add(palabraIntento[index].color);
+            addColorATecla(palabraIntento[index].letra, palabraIntento[index].color);
+        }, 500 * index);
+    });
 }
 
