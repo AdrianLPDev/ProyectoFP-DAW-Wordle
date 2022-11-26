@@ -14,6 +14,7 @@ html{
     --heightJuego: 90vh;
     --colorGrisOscuro:#818384;
     --colorGrisClaro:#c9c9c9;
+    --colorNaranja:#fea529;
     --colorVerde:#6aaa64;
     --colorBlanco: #ffffff;
     --divCuadrados:50px;
@@ -160,15 +161,17 @@ button.boton {
 .filaIntento, .cajaIntento {
     background-color: var(--colorBlanco);
 }
+
 .filaIntento {
-    width: 50%;
-    height: 100%;
-    margin: calc(1px + .1vw);
-    display:flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 5px;
+        width: 50%;
+        height: 100%;
+        margin: calc(1px + .1vw);
+        display:flex;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 5px;
 }
+
 .cajaIntento {
     display:flex;
     align-items: center;
@@ -219,4 +222,54 @@ button.boton {
 
   .content.closing {
     animation: SlideOut 200ms;
+  }
+
+/*Estilos para los efectos y colores*/
+.caja-gris-oscuro {
+    background-color: var(--colorGrisOscuro) !important;
+    border:none !important;
+}
+.caja-naranja {
+    background-color: var(--colorNaranja) !important;
+    border:none !important;
+}
+
+.caja-verde {
+    background-color: var(--colorVerde)!important;
+    border:none !important;
+}
+/*Efecto giro*/
+.girar {
+    animation: 0.5s linear flipping;
+}
+
+@keyframes flipping {
+    0% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+/*Vista movil*/
+@media only screen and (max-width: 1080px) {
+    .juego {
+        height: auto;
+    }
+    .intentos{
+        height: auto;
+    }
+    .filaIntento {
+        width: 50%;
+        height: auto;
+        margin: calc(1px + .1vw);
+        display:flex;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 5px;
+    }
   }
