@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordle - AdrianLP</title>
-    <link rel="stylesheet" href="CSS/main.css">
+    <title>Login - Wordlabras (ES)</title>
 </head>
-
 <body>
-    <!-- Todo un div que será el juego para dar tamaños y estructura visual -->
-    <div class="juego">
-        <!-- Header, con el menú de botones para navegar -->
-        <header>
-            <button onclick="location.href = 'HTML/ayuda.html'"><img src="IMGs/help.png" alt="ayuda"></button>
-            <h1>WORDLE (ES)</h1>
-            <div class="botonesDerecha">
-                <!-- <a href="HTML/stats.html"> -->
-                <button id="botonStats" class="boton" onclick="visibilizarStats()"><img src="IMGs/stats.png" alt="estadísticas"></button>
-                <!-- <a href="HTML/rank.html"> -->
-                <button id="botonRank" class="boton"><img src="IMGs/rank.png" alt="rank"></button>
-            </div>
-        </header>
-        <!-- Caja de intentos -->
-        <main id="intentos" class="intentos">
-        </main>
-        <!-- Caja de teclado -->
-        <div id="teclado" class="teclado">
-        </div>
-    </div>
-    <!-- Div/HTML de estadísticas que se superpondrá sobre el HTML que se ve de normal en index.html-->
-    <div id="stats"></div>
-    <!-- El Script debe ir al final para que haya cargado por completo el HTML y pueda generar correctamente los elementos según la estructura del HTML-->
-    <script src="JS/main.js"></script>
-</body>
+    <!-- Bootstrap: https://bootsnipp.com/snippets/dldxB-->
+    <link href="CSS/login.css" rel="stylesheet" id="bootstrap-css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
 
+    <div class="wrapper fadeInDown">
+    <div>
+        <img src="./IMGs/icono.png" id="icon" alt="wordlabras" />
+    </div>
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        
+        <!-- Icon -->
+        <div class="fadeIn first">
+        </div>
+
+        <!-- Login Form -->
+        <form>
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+
+        <!-- Remind Password -->
+        <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>
+
+    </div>
+    </div>
+    <!-- Script para importar node.js con axios / conexión a mysql -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
 </html>
