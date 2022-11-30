@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-11-30T18:20:56.938Z" agent="5.0 (Windows)" etag="JMHmCAEqarPXXYxVXvUc" version="20.5.1" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2022-11-30T18:24:53.443Z" agent="5.0 (Windows)" etag="-7GAYK8gkF27zFombM97" version="20.5.1" type="github" pages="2">
   <diagram id="zHL02T5WFE3Qr1LLwGKI" name="Diagrama Casos de uso">
     <mxGraphModel dx="1422" dy="752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -206,7 +206,7 @@
         <mxCell id="CXai0Wc8bp5_ZWrhDrSw-31" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;direction=south;" vertex="1" parent="CXai0Wc8bp5_ZWrhDrSw-1">
           <mxGeometry x="70" y="320" width="10" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="CXai0Wc8bp5_ZWrhDrSw-34" value="13: Jugar" style="endArrow=open;html=1;rounded=0;endFill=0;startArrow=none;startFill=0;exitX=0.5;exitY=-0.1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="CXai0Wc8bp5_ZWrhDrSw-1" target="CXai0Wc8bp5_ZWrhDrSw-4">
+        <mxCell id="CXai0Wc8bp5_ZWrhDrSw-34" value="13: Introducir palabra" style="endArrow=classic;html=1;rounded=0;endFill=1;startArrow=none;startFill=0;exitX=0.5;exitY=-0.1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="CXai0Wc8bp5_ZWrhDrSw-1" target="CXai0Wc8bp5_ZWrhDrSw-4">
           <mxGeometry x="0.055" y="10" width="50" height="50" relative="1" as="geometry">
             <mxPoint x="80" y="440.5" as="sourcePoint" />
             <mxPoint x="260" y="440" as="targetPoint" />
@@ -231,6 +231,9 @@
             </Array>
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="kuz1ccnvBrO9X1_z1zO3-3" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;direction=south;" vertex="1" parent="CXai0Wc8bp5_ZWrhDrSw-4">
+          <mxGeometry x="70" y="440" width="10" height="140" as="geometry" />
         </mxCell>
         <mxCell id="CXai0Wc8bp5_ZWrhDrSw-5" value="BASE DE DATOS" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
           <mxGeometry x="420" y="60" width="150" height="600" as="geometry" />
@@ -259,6 +262,9 @@
             </Array>
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="kuz1ccnvBrO9X1_z1zO3-2" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;direction=south;" vertex="1" parent="CXai0Wc8bp5_ZWrhDrSw-5">
+          <mxGeometry x="70" y="440" width="10" height="140" as="geometry" />
         </mxCell>
         <mxCell id="CXai0Wc8bp5_ZWrhDrSw-9" value="1:Registrarse" style="endArrow=open;html=1;rounded=0;endFill=0;" edge="1" parent="1" source="CXai0Wc8bp5_ZWrhDrSw-1" target="CXai0Wc8bp5_ZWrhDrSw-4">
           <mxGeometry x="0.0053" y="10" width="50" height="50" relative="1" as="geometry">
@@ -343,6 +349,32 @@
             <Array as="points">
               <mxPoint x="241" y="449.5" />
             </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kuz1ccnvBrO9X1_z1zO3-1" value="14: Comprueba plabra" style="endArrow=classic;html=1;rounded=0;endFill=1;startArrow=none;startFill=0;" edge="1" parent="1" source="CXai0Wc8bp5_ZWrhDrSw-4" target="CXai0Wc8bp5_ZWrhDrSw-5">
+          <mxGeometry x="0.055" y="10" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="510.5" as="sourcePoint" />
+            <mxPoint x="474.5" y="510" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="420" y="510" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kuz1ccnvBrO9X1_z1zO3-4" value="15: Palabra verificada" style="endArrow=none;html=1;rounded=0;endFill=0;startArrow=classic;startFill=1;entryX=0.479;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="kuz1ccnvBrO9X1_z1zO3-3" target="kuz1ccnvBrO9X1_z1zO3-2">
+          <mxGeometry x="0.055" y="10" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="569.5" as="sourcePoint" />
+            <mxPoint x="479" y="569.5" as="targetPoint" />
+            <Array as="points" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kuz1ccnvBrO9X1_z1zO3-5" value="16: Partida acabada" style="endArrow=none;html=1;rounded=0;endFill=0;startArrow=open;startFill=0;entryX=0.557;entryY=1.1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="CXai0Wc8bp5_ZWrhDrSw-1" target="kuz1ccnvBrO9X1_z1zO3-3">
+          <mxGeometry x="0.055" y="10" width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="580" as="sourcePoint" />
+            <mxPoint x="300" y="577.06" as="targetPoint" />
+            <Array as="points" />
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
