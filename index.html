@@ -5,36 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Wordlabras (ES)</title>
-</head>
-<body>
     <!-- Bootstrap: https://bootsnipp.com/snippets/dldxB-->
     <link href="CSS/login.css" rel="stylesheet" id="bootstrap-css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
-
+</head>
+<body>
     <div class="wrapper fadeInDown">
     <div>
         <img src="./IMGs/icono.png" id="icon" alt="wordlabras" />
     </div>
     <div id="formContent">
-        <!-- Tabs Titles -->
-        
-        <!-- Icon -->
+        <!-- Div por si se necesita implementar una foto de usuario o similar -->
         <div class="fadeIn first">
         </div>
 
         <!-- Login Form -->
         <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="contraseña">
+        <input type="submit" class="fadeIn fourth" value="Acceder">
         </form>
 
         <!-- Remind Password -->
         <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
+        <a class="underlineHover" href="#" onclick="alert('Contacte con el administrador por favor. Email: Wordlabras@gmail.com')">¿Contraseña olvidada?</a>
         </div>
 
     </div>
