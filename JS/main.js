@@ -39,7 +39,7 @@ function numeroRandom(length) {
 var palabraAleatoria = '';
 
 /* Expresión regular para borrar lineas duplicadas de un archivo ^(.*)(\n\1)+$ --> https://www.w3schools.io/editor/vscode-duplicate-line/ */
-fetch("./TXT/05.txt")
+fetch("../TXT/05.txt")
    .then(response => response.text())
    .then((response) => {
     let lineas = response.split("\n");
@@ -168,6 +168,38 @@ for (let contadorLetra = 0; contadorLetra < letras.length; contadorLetra++) {
     contadorBoton++;
 }
 
+//PARA EL TECLADO
+//Añadimos un evento también para que el documento pueda leer la entrada por teclado
+document.addEventListener('keydown', (e) => RecogerTecla(e));
+
+// RecogerTecla(evento)
+function RecogerTecla(evento) {
+        let letra = evento.key.toUpperCase();
+        console.log(letra);
+         if(letra == "BACKSPACE"){
+            borrarLetra();
+            //Paramos aquí
+            return;
+        }
+        /*Aquí comprobaremos si ha clickeado en ENTER que será cuando quiera comprobar la palabra*/
+        if (letra == "ENTER"){
+            /*Utilizaremos una funcion comprobarPalabra para comprobar que la palabra escrita es correta, existe y luego si coincide */
+            comprobarPalabra();
+            //Paramos aquí
+            return;
+        }
+        /*Este bucle es para que sólo escriba las letras del teclado y no lo haga con las pulsaciones de teclas como CTRL, F12, etc..*/
+        letras.forEach(letraDeLetras => {
+            if(letraDeLetras == letra){
+                addLetra(letra);
+            }
+        });
+        
+
+    //}
+}
+//FIN DE 'PARA EL TECLADO'
+
 /**
  * recogerClick(letra)
  * 
@@ -229,7 +261,7 @@ function comprobarPalabra () {
     var contadorPalabraDetectada = 0;
     let palabraIntento = arrayIntentos[numIntento].join('').toLocaleLowerCase();
     if(columnaIntento > 4){
-        fetch("./TXT/05.txt")
+        fetch("../TXT/05.txt")
         .then(response => response.text())
         .then((response) => {
             let lineas = response.split("\n");

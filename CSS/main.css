@@ -264,12 +264,9 @@ button.boton {
         height: auto;
     }
     .filaIntento {
-        width: 50%;
-        height: auto;
-        margin: calc(1px + .1vw);
-        display:flex;
-        justify-content: space-between;
-        align-items: stretch;
-        gap: 5px;
+        width: 100%;
+    }
+    .teclado {
+        width: 75vw;
     }
   }
