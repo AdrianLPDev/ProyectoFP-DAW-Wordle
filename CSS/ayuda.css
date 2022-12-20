@@ -1,0 +1,68 @@
+.ayuda{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.cuadro {  
+    width: 75%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns:  0.5fr 1.5fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 2px 0px; 
+    grid-auto-flow: row;
+    grid-template-areas:
+      "verde texto-verde texto-verde"
+      "naranja texto-naranja texto-naranja"
+      "gris texto-gris texto-gris";
+  }
+  .caja {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 62px;
+    height: 62px;
+    max-height: 62px;
+    color: white;
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 5px;
+
+
+  }
+  .verde { grid-area: verde; }
+  
+  .naranja { grid-area: naranja; }
+  
+  .gris { grid-area: gris; }
+  
+  .texto-verde { grid-area: texto-verde; }
+  
+  .texto-naranja { grid-area: texto-naranja; }
+  
+  .texto-gris { grid-area: texto-gris; }
+
+  h1 {
+    text-align: center;
+  }
+  .palabra{
+    display: flex;
+    justify-content: center;
+  }
+
+  .caja-blanca{
+    /* Para que el borde sea interno */
+    box-sizing: border-box;
+    color:black;
+    background-color: white;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+  }
+
+  div.palabra > div{
+    margin-right: calc(1px + 1%);
+  }

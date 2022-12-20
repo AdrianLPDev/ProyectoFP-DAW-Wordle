@@ -11,7 +11,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="../JS/app.js"></script>
+
 </head>
 <body>
     <div class="wrapper fadeInDown">
@@ -25,16 +25,26 @@
             </div>
     
             <!-- Login Form -->
-            <form id="form">
+            <form id="form" onsubmit="event.preventDefault();">
                 <input type="text" id="email" class="fadeIn first datos" name="registro" placeholder="email">
                 <input type="text" id="usuario" class="fadeIn second datos" name="registro" placeholder="usuario">
                 <input type="text" id="password" class="fadeIn third datos" name="registro" placeholder="contraseña">
-                <input type="submit" onclick="formRegistro()" id="registro" class="fadeIn third btn" name="registro" value="registrarse">
+                <input type="submit" id="registro" class="fadeIn third btn" name="registro" value="registrarse">
             </form>
     
         </div>
         </div>
+        <!-- <script data-main="scripts/main" src="scripts/require.js"></script>-->
+        <script type="module" src="../server.js"></script>
+        <script src="../JS/app.js"></script>
+        <script>
+            var email = "<%= email %>";
+            var usuario = "<%= usuario %>";
+            var password = "<%= password %>";
+
+        </script>
         <!-- Script para importar node.js con axios / conexión a mysql -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
 </body>
 </html>

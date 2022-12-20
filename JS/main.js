@@ -92,8 +92,6 @@ fetch('./JSON/palabras.json')
  * 
 */
 var juegoAcabado = true;
-/* Un contador con el número de intentos que posee el usuario */
-let intentoNumero = 0;
 
 /* Constante de todas las letras existentes en el alfabeto castellano-español. Ésto me servirá para crear el teclado */
 const letras = [
@@ -175,7 +173,6 @@ document.addEventListener('keydown', (e) => RecogerTecla(e));
 // RecogerTecla(evento)
 function RecogerTecla(evento) {
         let letra = evento.key.toUpperCase();
-        console.log(letra);
          if(letra == "BACKSPACE"){
             borrarLetra();
             //Paramos aquí
@@ -276,17 +273,16 @@ function comprobarPalabra () {
                     */
                     if (palabraAleatoria == palabraIntento) {
                         juegoAcabado = true;
+                        alert("Has ganado!");
                         console.log("Has ganado!");
                         return
                     } else {
                         if(numIntento >= 5){
                             juegoAcabado = false;
-                            alert('Game Over');
+                            alert(`Game Over, la palabra era ${palabraAleatoria}`);
                             return
                         }
                         if(numIntento < 5){
-                            console.log("Palabra intento: "+palabraIntento);
-                            console.log("Palabra del bucle: "+palabraIntento);
                             //Sumamos uno a la posición de la fila por lo que bajaremos de fila para escribir
                             numIntento++;
                             //Reseteamos la posición de la columna
@@ -296,7 +292,6 @@ function comprobarPalabra () {
                 }
             });
             if (contadorPalabraDetectada == 0){
-                console.log(contadorPalabraDetectada);
                 alert('La palabra no existe');
                 return
             }
