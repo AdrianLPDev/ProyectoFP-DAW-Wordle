@@ -5,8 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordlabras Ranking - AdrianLP</title>
+    <link href="../CSS/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    
+        <!-- Todo un div que será el juego para dar tamaños y estructura visual -->
+        <div class="juego">
+            <!-- Header, con el menú de botones para navegar -->
+            <header>
+                <button onclick="location.href = './ayuda.html'"><img src="../IMGs/help.png" alt="ayuda"></button>
+                <div><button onclick="location.href = './wordlabras.html'"><h1>Wordlabras (ES) - Ranking</h1></button></div>
+                <div class="botonesDerecha">
+                    <!-- <a href="HTML/stats.html"> -->
+                    <button id="botonStats" class="boton"onclick="location.href = './stats.html'"><img src="../IMGs/stats.png" alt="estadísticas"></button>
+                    <!-- <a href="HTML/rank.html"> -->
+                    <button id="botonRank" class="boton" onclick="location.href = './rank.html'"><img src="../IMGs/rank.png" alt="rank"></button>
+                </div>
+            </header>
+            <!-- Caja de intentos -->
+            <main id="intentos" class="intentos"> 
+
+            </main>
+
 </body>
 </html>

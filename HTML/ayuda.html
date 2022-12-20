@@ -5,8 +5,96 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordlabras (AYUDA) - AdrianLP</title>
+    <link href="../CSS/main.css" rel="stylesheet" type="text/css">
+    <link href="../CSS/ayuda.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body>    
+    <!-- Todo un div que será el juego para dar tamaños y estructura visual -->
+    <div class="juego">
+        <!-- Header, con el menú de botones para navegar -->
+        <header>
+            <button onclick="location.href = './ayuda.html'"><img src="../IMGs/help.png" alt="ayuda"></button>
+            <div><button onclick="location.href = './wordlabras.html'"><h1>Wordlabras (ES) - Ayuda</h1></button></div>
+            <div class="botonesDerecha">
+                <!-- <a href="HTML/stats.html"> -->
+                <button id="botonStats" class="boton"onclick="location.href = './stats.html'"><img src="../IMGs/stats.png" alt="estadísticas"></button>
+                <!-- <a href="HTML/rank.html"> -->
+                <button id="botonRank" class="boton"><img src="../IMGs/rank.png" alt="rank"></button>
+            </div>
+        </header>
+        <!-- Caja  -->
+        <main id="intentos" class="ayuda">   
+            <p>El objetivo del juego es simple, adivinar la palabra oculta. La palabra tiene 5 letras y tienes 6 intentos para adivinarla. La palabra es la misma para todas las personas en ese día. </p>
+            <p>Cada intento debe ser una palabra válida. En cada ronda el juego pinta cada letra de un color indicando si esa letra se encuentra o no en la palabra y si se encuentra en la posición correcta.</p>
+        
+            <div class="cuadro">
+                <div class="caja caja-verde verde">V</div>
+                <div class="texto-verde">VERDE significa que la letra está en la palabra y en la posición CORRECTA.</div>
+                <div class="caja caja-naranja naranja">N</div>
+                <div class="texto-naranja">NARANJA significa que la letra letra está presente en la palabra pero en la posición INCORRECTA.</div>
+                <div class="caja caja-gris-oscuro gris">G</div>
+                <div class="texto-gris">GRIS significa que la letra letra NO está presente en la palabra.</div>
+            </div>
+            <div class="ejemplo">
+                <h1>Ejemplo</h1>
+
+                <p>Imagina que la palabra oculta sea RUBIA.</p>
+                
+                <p>Empezamos con una palabra válida como FAROL.</p>
+                <div class="palabra">
+                    <div class="caja caja-gris-oscuro gris">f</div>
+                    <div class="caja caja-naranja naranja">a</div>
+                    <div class="caja caja-naranja naranja">r</div>
+                    <div class="caja caja-gris-oscuro gris">o</div>
+                    <div class="caja caja-gris-oscuro gris">l</div>
+                </div>
+                <p>El amarillo indica que tanto la letra R como la A estan en la palabra pero en la posicion incorrecta.</p>
+                
+                <p>Puedo ahora intentar con una palabra que tenga la R y la A pero en otras posiciones como ROSAS.</p>
+                <div class="palabra">
+                    <div class="caja caja-verde verde">r</div>
+                    <div class="caja caja-gris-oscuro gris">o</div>
+                    <div class="caja caja-gris-oscuro gris">s</div>
+                    <div class="caja caja-naranja naranja">a</div>
+                    <div class="caja caja-gris-oscuro gris">s</div>
+                </div>
+                <p>El color verde indica que la letra R está en la posición correcta mientras que la A sigue estando en la incorrecta.</p>
+                
+                <p>Al final todas las letras deberían ser verdes.</p>
+                <div class="palabra">
+                    <div class="caja caja-verde verde">r</div>
+                    <div class="caja caja-verde verde">u</div>
+                    <div class="caja caja-verde verde">b</div>
+                    <div class="caja caja-verde verde">i</div>
+                    <div class="caja caja-verde verde">a</div>
+                </div>
+                <h1>Letras repetidas</h1>
+                
+                <p>La palabra oculta puede tener letras repetidas. En ese caso, las pistas son independientes para cada letra y tienen prioridad (verde es mayor a amarillo).</p>
+                
+                <p>Por ejemplo si la palabra oculta es ROSAS y utilizamos SACOS entonces se marca la primera S en en amarillo y la segunda S en verde.</p>
+                <div class="palabra">
+                    <div class="caja caja-naranja naranja">s</div>
+                    <div class="caja caja-blanca">a</div>
+                    <div class="caja caja-blanca">c</div>
+                    <div class="caja caja-blanca">o</div>
+                    <div class="caja caja-verde">s</div>
+                </div>
+                <p>Si utilizo una palabra con una sola S como RATOS entonces se marca en verde la S pues esta en la posición correcta y no se avisa si hay una letra repetida.</p>
+                <div class="palabra">
+                    <div class="caja caja-blanca">r</div>
+                    <div class="caja caja-blanca">a</div>
+                    <div class="caja caja-blanca">t</div>
+                    <div class="caja caja-blanca">o</div>
+                    <div class="caja caja-verde">s</div>
+                </div>
+                <!-- Espacio al final con un HTML engorroso por no querer pensar -->
+                <div>
+                    <br>
+                </div>
+            </div>
+        </main>
+        
     
 </body>
 </html>
