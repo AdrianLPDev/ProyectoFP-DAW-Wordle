@@ -1,6 +1,56 @@
 /**
  * Coger elementos del DOM
  */
+// Cogemos el usuario de la URL o lo leemos del localstorage
+var usuario;
+let url = new URL(window.location.href);
+let searchParams = new URLSearchParams(url.search);
+if(searchParams.get('usuario')){//si entramos con un usuario por primera vez, la URL tendrá por GET el usuario
+    usuario = searchParams.get('usuario');
+    localStorage.setItem('usuario', usuario);
+}else{//Si no entramos por el login, es que nos hemos movido por las pestañas por lo que deberemos leer el usuario y declararlo
+    usuario = localStorage.getItem('usuario');
+}
+//Conseguir el día de hoy
+var hoy = "";
+//Función para obtener el día de hoy en formato dd-mm-yyyy
+function conseguirDia(){
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //Enero es 0!
+    let yyyy = today.getFullYear();
+    
+    today = mm + '-' + dd + '-' + yyyy;
+    return today+"";
+}
+//Declaramos el día y le damos el valor del día de hoy para comprobar en BBDD si el día de hoy, el usuario tiene registrada ya una partida
+hoy = conseguirDia();
+//Variable para saber la respuesta axios
+var resultado = false;
+//Getters y setters de la variable
+function getResult (){
+    return resultado;
+}
+function setResult (respuesta) {
+    resultado = respuesta;
+}
+const urlBase = 'http://localhost/Proyecto/API/'
+//Función con axios para comprobar en BBDD si el usuario tiene jugada hoy una partida
+async function comprobarEstadisticas(hoy){
+    var data = new FormData();
+    data.append('usuario', usuario);
+    data.append('fecha', hoy);
+    await axios.post(`${urlBase}estadisticas.php`, data).then(respuesta => {console.log(respuesta.data); setResult(respuesta.data);})
+}
+async function haJugado(){
+    await comprobarEstadisticas(hoy);
+    if(resultado){
+        console.log("Tiene una partida jugada hoy");
+    }else if (resultado== false){
+        console.log("NO tiene una partida jugada hoy");
+    }
+}
+haJugado();
 
 /* Cogemos el div de intentos */
 const cajaIntentos = document.getElementById("intentos");
@@ -215,9 +265,15 @@ function recogerClick(letra) {
         /*Aquí comprobaremos si ha clickeado en ENTER que será cuando quiera comprobar la palabra*/
         if (letra == "ENTER"){
             /*Utilizaremos una funcion comprobarPalabra para comprobar que la palabra escrita es correta, existe y luego si coincide */
-            comprobarPalabra();
-            //Paramos aquí
-            return;
+            if(comprobarPalabra()){//Si se ha acabado el juego con victoria
+                añadirEstadisticas(filaIntentos, columnaIntentos, true);
+            }else if(comprobarPalabra() == false){//Si el juego acabó con derrota
+                añadirEstadisticas(filaIntentos, columnaIntentos, false);
+                //Paramos aquí
+                return;
+            }else{//si el juego sigue
+                return;
+            }
         }
         addLetra(letra);
 
@@ -275,12 +331,12 @@ function comprobarPalabra () {
                         juegoAcabado = true;
                         alert("Has ganado!");
                         console.log("Has ganado!");
-                        return
+                        return true;
                     } else {
                         if(numIntento >= 5){
                             juegoAcabado = false;
                             alert(`Game Over, la palabra era ${palabraAleatoria}`);
-                            return
+                            return false;
                         }
                         if(numIntento < 5){
                             //Sumamos uno a la posición de la fila por lo que bajaremos de fila para escribir
@@ -346,3 +402,24 @@ function efectos() {
     });
 }
 
+function añadirEstadisticas(filaIntentos, columnaIntentos, juego){
+    let intentos = ((filaIntentos+1)*(columnaIntentos+1));
+    let victoria = 0;
+    if (juego){//Si el juego es victoria, es decir, es igual a 'true', le damos el valor de 1
+        victoria = 1;
+    }
+    registrarEstadisticas(usuario, victoria, intentos);
+}
+
+//Función para efectuar el registro del usuario
+function registrarEstadisticas(usuario, victoria, intentos){
+    var data = new FormData();
+    data.append('email', email);
+    data.append('usuario', usuario);
+    data.append('password', password);
+    axios.post(`${urlBase}agregarUsuario.php`, data)
+    .then(respuesta => {console.log(respuesta.data); window.location.href = "../HTML/stats.html";})
+    .catch(error => console.log(error))
+    //En caso de Axios
+
+}
