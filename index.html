@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Wordlabras (ES)</title>
     <!-- Bootstrap: https://bootsnipp.com/snippets/dldxB-->
-    <link href="CSS/login.css" rel="stylesheet" id="bootstrap-css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="./CSS/login.css" rel="stylesheet" id="bootstrap-css">
+    <script src="./JS/appLogin.js" defer></script>
 </head>
 <body>
     <div class="wrapper fadeInDown">
     <div>
-        <img src="./IMGs/icono.png" id="icon" alt="wordlabras" />
+        <a href="./index.html"><img src="./IMGs/icono.png" id="icon" alt="wordlabras" /></a>
     </div>
     <div id="formContent">
         <!-- Div por si se necesita implementar una foto de usuario o similar -->
@@ -22,10 +23,10 @@
         </div>
 
         <!-- Login Form -->
-        <form onsubmit="event.preventDefault();">
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="contraseña">
-        <input type="submit" class="fadeIn fourth" value="Acceder">
+        <form  id="form" method="POST" onsubmit="event.preventDefault();">
+        <input type="text" id="usuario" class="fadeIn first datos" name="login" placeholder="usuario">
+        <input type="password" id="password" class="fadeIn second datos" name="login" placeholder="contraseña">
+        <input type="submit" id="login" class="fadeIn fourth" value="Acceder">
         </form>
         <!-- Registro -->
         <div id="formFooter">
