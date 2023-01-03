@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-12-2022 a las 11:36:51
+-- Tiempo de generación: 03-01-2023 a las 23:44:59
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `estadisticas` (
   `id_estadistica` int(11) NOT NULL,
   `usuario` varchar(252) NOT NULL,
-  `fecha` varchar(10) NOT NULL,
+  `fecha` varchar(252) NOT NULL,
   `victoria` tinyint(1) NOT NULL,
   `intentos` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -42,7 +42,11 @@ CREATE TABLE `estadisticas` (
 INSERT INTO `estadisticas` (`id_estadistica`, `usuario`, `fecha`, `victoria`, `intentos`) VALUES
 (1, 'admin', '30-11-2022', 1, 1),
 (2, 'admin', '01-12-2022', 1, 1),
-(3, 'admin', '02-12-2022', 1, 1);
+(3, 'admin', '02-12-2022', 1, 1),
+(4, 'usuario', '29-12-2022', 1, 5),
+(5, 'usuario', '28-12-2022', 1, 5),
+(6, 'usuario', '27-12-2022', 1, 1),
+(7, 'a', '03-01-2023', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -62,7 +66,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `email`, `usuario`, `password`) VALUES
-(1, '', 'admin', 'admin');
+(1, 'admin@admin.com', 'admin', 'admin'),
+(2, 'usuario@usuario.com', 'usuario', 'usuario'),
+(3, 'a@a.com', 'a', 'a'),
+(4, 'b@b.com', 'b', 'b'),
+(5, 'c@c.com', 'c', 'c'),
+(6, 'd@d.com', 'd', 'd'),
+(7, 'Adrian@iesgalileo.es', 'adrian', 'adrian');
 
 --
 -- Índices para tablas volcadas
@@ -91,13 +101,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadisticas`
 --
 ALTER TABLE `estadisticas`
-  MODIFY `id_estadistica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_estadistica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

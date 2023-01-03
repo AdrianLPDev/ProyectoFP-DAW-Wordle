@@ -6,17 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Wordlabras</title>
     <!-- Bootstrap: https://bootsnipp.com/snippets/dldxB-->
-    <link href="../CSS/login.css" rel="stylesheet" id="bootstrap-css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="../CSS/login.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Script para importar node.js con axios / conexión a mysql -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../JS/appRegistro.js" defer></script>
+    <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
 </head>
 <body>
     <div class="wrapper fadeInDown">
         <div class="fadeIn first">
-            <img src="../IMGs/icono.png" id="icon" alt="wordlabras" />
+            <a href="../index.html"><img src="../IMGs/icono.png" id="icon" alt="wordlabras" /></a>
         </div>
         <div id="formContent">
             <!-- Div por si se necesita implementar una foto de usuario o similar -->
@@ -25,26 +29,14 @@
             </div>
     
             <!-- Login Form -->
-            <form id="form" onsubmit="event.preventDefault();">
+            <form id="form" method="POST">
                 <input type="text" id="email" class="fadeIn first datos" name="registro" placeholder="email">
                 <input type="text" id="usuario" class="fadeIn second datos" name="registro" placeholder="usuario">
-                <input type="text" id="password" class="fadeIn third datos" name="registro" placeholder="contraseña">
+                <input type="password" id="password" class="fadeIn second datos" name="registro" placeholder="contraseña">
                 <input type="submit" id="registro" class="fadeIn third btn" name="registro" value="registrarse">
             </form>
     
         </div>
         </div>
-        <!-- <script data-main="scripts/main" src="scripts/require.js"></script>-->
-        <script type="module" src="../server.js"></script>
-        <script src="../JS/app.js"></script>
-        <script>
-            var email = "<%= email %>";
-            var usuario = "<%= usuario %>";
-            var password = "<%= password %>";
-
-        </script>
-        <!-- Script para importar node.js con axios / conexión a mysql -->
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
 </body>
 </html>
