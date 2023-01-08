@@ -13,32 +13,33 @@
         $fecha = $_POST['fecha'];
         $victoria = $_POST['victoria'];
         $intentos = $_POST['intentos'];
-
-    }else if (isset($_POST['usuario']) && isset($_POST['fecha'])){
-        $usuario = $_POST['usuario'];
-        $fecha = $_POST['fecha'];
-        $sql = "SELECT * FROM estadisticas WHERE usuario = ? fecha = ?";
+        $sql = "INSERT INTO estadisticas(usuario, fecha, victoria, intentos) VALUES(?, ?, ?, ?)";
         if($query = $mysqli->prepare($sql)) {
-            $query->bind_param('ii',$usuario,$fecha);
+            $query->bind_param('ssss', $usuario, $fecha, $victoria, $intentos);
             $query->execute();
-            $query->store_result();
-            $rows = $query->num_rows;
-            //$result = $query->get_result();
-            if($rows > 0){//Si hay resultados{
-                echo json_encode($rows);
-            }else{
-                echo json_encode($rows);
-            }
-            /*
-            if($result->num_rows >= 1){//Si hay resultados
-                echo json_encode($result);
-                //echo json_encode(true);
+            $result = $query->get_result();
+            if($result){
+                echo json_encode(true);
                 return;
-            }else{//Si no hay resultados
+            }else{
                 echo json_encode(false);
                 return;
             } 
-            */
+        } else {
+            $jsonRespuesta = array('msg' => 'ERROR');
+            echo json_encode($jsonRespuesta);
+        }//Si están vacíos los datos por POST de axios
+    }else if (isset($_POST['usuario']) && isset($_POST['fecha'])){
+        $usuario = $_POST['usuario'];
+        $fecha = $_POST['fecha'];
+        $sql = "SELECT * FROM estadisticas WHERE usuario = '$usuario' AND fecha = '$fecha'";
+        if($query = $mysqli->query($sql)) {
+            $result = $query->num_rows;
+            if($result > 0){
+                echo json_encode(true);
+            }else{
+                echo json_encode(false);
+            }
         } else {//Si la consulta ha dado error
             $jsonRespuesta = array('msg' => 'ERROR');
             echo json_encode($jsonRespuesta);

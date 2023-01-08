@@ -14,7 +14,7 @@
     if (isset($_POST['usuario']) && $_POST['password']){
         $sql = "SELECT * FROM usuarios WHERE usuario = ? OR password = ?";
         if($query = $mysqli->prepare($sql)) {
-            $query = $mysqli->prepare("SELECT * FROM usuarios WHERE usuario = ? OR password = ?");
+            $query = $mysqli->prepare("SELECT * FROM usuarios WHERE usuario = ? AND password = ?");
             $query->bind_param('ss', $usuario, $password);
             $query->execute();
             $result = $query->get_result();

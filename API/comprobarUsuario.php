@@ -38,13 +38,9 @@
             $result = $mysqli->query($sql);
             if($result) {
                 $jsonRespuesta = array('msg' => 'OK');
-                $query.close();
-                $result.close();
                 echo json_encode(true);
                 return;
             } else {
-                $query.close();
-                $result.close();
                 echo json_encode(false);
                 return;
             }
