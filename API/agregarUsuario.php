@@ -23,13 +23,9 @@
             $query->execute();
             $result = $query->get_result();
             if($result){
-                $query.close();
-                $result.close();
                 echo json_encode(true);
                 return;
             }else{
-                $query.close();
-                $result.close();
                 echo json_encode(false);
                 return;
             } 

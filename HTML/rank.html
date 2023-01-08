@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordlabras Ranking - AdrianLP</title>
     <link href="../CSS/main.css" rel="stylesheet" type="text/css">
+    <link href="../CSS/stats.css" rel="stylesheet" type="text/css">
+    <!-- Script para importar node.js con axios / conexión a mysql -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../JS/appRank.js" defer></script>
+    
 </head>
 <body>
         <!-- Todo un div que será el juego para dar tamaños y estructura visual -->
@@ -22,8 +27,20 @@
                 </div>
             </header>
             <!-- Caja de intentos -->
-            <main id="intentos" class="intentos"> 
-
+            <main id="stats" class="stats">   
+                <table>
+                    <thead id="thead" class="tg">
+                        <tr>
+                        <td class="tg-o79m">Rank</td>
+                        <td class="tg-o79m">Usuario</td>
+                        <td class="tg-o79m">Victorias</td>
+                        <td class="tg-o79m">Intentos</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        
+                    </tbody>
+                </table>
             </main>
 
 </body>
