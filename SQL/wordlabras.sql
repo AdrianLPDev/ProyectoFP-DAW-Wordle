@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-01-2023 a las 23:44:59
+-- Tiempo de generación: 07-01-2023 a las 16:48:57
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -46,7 +46,15 @@ INSERT INTO `estadisticas` (`id_estadistica`, `usuario`, `fecha`, `victoria`, `i
 (4, 'usuario', '29-12-2022', 1, 5),
 (5, 'usuario', '28-12-2022', 1, 5),
 (6, 'usuario', '27-12-2022', 1, 1),
-(7, 'a', '03-01-2023', 1, 0);
+(7, 'a', '03-01-2023', 1, 1),
+(8, 'a', '06-01-2023', 1, 1),
+(9, 'a', '07-01-2023', 1, 4),
+(10, 'admin', '07-01-2023', 1, 6),
+(11, 'b', '01-01-2023', 1, 2),
+(12, 'b', '02-01-2023', 1, 2),
+(13, 'b', '03-01-2023', 1, 2),
+(15, 'usuario', '07-01-2023', 1, 4),
+(16, 'b', '07-01-2023', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -101,7 +109,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadisticas`
 --
 ALTER TABLE `estadisticas`
-  MODIFY `id_estadistica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_estadistica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
