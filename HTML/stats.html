@@ -6,24 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordlabras Estadísticas - AdrianLP</title>
     <link href="../CSS/main.css" rel="stylesheet" type="text/css">
+    <link href="../CSS/stats.css" rel="stylesheet" type="text/css">
+    <script src="../JS/appStats.js" defer></script>
+    <!-- Script para importar node.js con axios / conexión a mysql -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-        <!-- Todo un div que será el juego para dar tamaños y estructura visual -->
-        <div class="juego">
-            <!-- Header, con el menú de botones para navegar -->
-            <header>
-                <button onclick="location.href = './ayuda.html'"><img src="../IMGs/help.png" alt="ayuda"></button>
-                <div><button onclick="location.href = './wordlabras.html'"><h1>Wordlabras (ES) - Estadísticas</h1></button></div>
-                <div class="botonesDerecha">
-                    <!-- <a href="HTML/stats.html"> -->
-                    <button id="botonStats" class="boton" onclick="location.href = './stats.html'"><img src="../IMGs/stats.png" alt="estadísticas"></button>
-                    <!-- <a href="HTML/rank.html"> -->
-                    <button id="botonRank" class="boton" onclick="location.href = './rank.html'"><img src="../IMGs/rank.png" alt="rank"></button>
-                </div>
-            </header>
-            <!-- Caja de intentos -->
-            <main id="intentos" class="intentos">   
+    <!-- Todo un div que será el juego para dar tamaños y estructura visual -->
+    <div class="juego">
+        <!-- Header, con el menú de botones para navegar -->
+        <header id="header">
+            <button id='izquierdas' onclick="location.href = './ayuda.html'"><img src="../IMGs/help.png" alt="ayuda"></button>
+            <div id="central"><button onclick="location.href = './wordlabras.html'"><h1>Wordlabras (ES) - Estadísticas</h1></button></div>
+            <div id='derechas' class="botonesDerecha">
+                <!-- <a href="HTML/stats.html"> -->
+                <button id="botonStats" class="boton" onclick="location.href = './stats.html'"><img src="../IMGs/stats.png" alt="estadísticas"></button>
+                <!-- <a href="HTML/rank.html"> -->
+                <button id="botonRank" class="boton" onclick="location.href = './rank.html'"><img src="../IMGs/rank.png" alt="rank"></button>
+            </div>
+        </header>
+        <!-- Caja de stats-->
+        <main id="stats" class="stats">   
+            <table>
+                <thead id="thead" class="tg">
+                    <tr>
+                    <td class="tg-o79m">Usuario</td>
+                    <td class="tg-o79m">Fecha</td>
+                    <td class="tg-o79m">Resultado</td>
+                    <td class="tg-o79m">Intentos</td>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
 
-            </main>
+                </tbody>
+            </table>
+        </main>
 </body>
 </html>
