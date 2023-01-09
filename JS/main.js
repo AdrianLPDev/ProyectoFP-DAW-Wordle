@@ -392,18 +392,18 @@ async function haJugado(){
                 palabraIntento.push({ letra: cuadro.getAttribute('datos'), color: 'caja-gris-oscuro' });
             });
 
-            //Pintamos de naranja si existe la letra en algún lugar de la palabra aleatoria
-            palabraIntento.forEach(palabraIntento => {
-                if (compruebaPalabra.includes(palabraIntento.letra)) {
-                    palabraIntento.color = 'caja-naranja';
-                    compruebaPalabra = compruebaPalabra.replace(palabraIntento.letra, '');
-                }
-            });
-
             //Pintamos de verde si la posicion de la letra coincide con el de la palabra aleatoria
             palabraIntento.forEach((palabraIntento, index) => {
                 if (palabraIntento.letra == palabraAleatoria[index].toUpperCase()) {
                     palabraIntento.color = 'caja-verde';
+                    compruebaPalabra = compruebaPalabra.replace(palabraIntento.letra, '');
+                }
+            });
+
+            //Pintamos de naranja si existe la letra en algún lugar de la palabra aleatoria
+            palabraIntento.forEach(palabraIntento => {
+                if (compruebaPalabra.includes(palabraIntento.letra)) {
+                    palabraIntento.color = 'caja-naranja';
                     compruebaPalabra = compruebaPalabra.replace(palabraIntento.letra, '');
                 }
             });
